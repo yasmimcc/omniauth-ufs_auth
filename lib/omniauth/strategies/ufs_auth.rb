@@ -53,6 +53,10 @@ module OmniAuth
       def raw_info
         @raw_info ||= access_token.get('/usuario').parsed
       end
+      
+      def callback_url
+        'project.dcomp.ufs.br/auth/ufs_auth/callback'
+      end
     end
   end
 end
