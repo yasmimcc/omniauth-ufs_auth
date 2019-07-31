@@ -10,7 +10,7 @@ Add this plugin by adding it to `/opt/openproject/Gemfile.custom`, e.g.:
 ```ruby
 group :opf_plugins do
   gem 'omniauth-oauth2', git: 'https://github.com/omniauth/omniauth-oauth2', tag: 'v1.5.0'
-  gem 'openproject-ufs_auth', :git => 'https://github.com/yasmimcc/openproject-ufs_auth.git'
+  gem 'openproject-ufs_auth', :git => 'https://github.com/yasmimcc/openproject-ufs_auth'
 end
 ```
 
@@ -19,7 +19,6 @@ Propagate the Gemfile to the package
 openproject config:set CUSTOM_PLUGIN_GEMFILE=/opt/openproject/Gemfile.custom
 openproject config:set UFS_KEY={client_id}        # your app api key
 openproject config:set UFS_SECRET={client_secret} # your app api secret
-openproject config:set FORCE_PARAMS='true'
 ```
 
 Once you've done that install it via with user `su`
