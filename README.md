@@ -4,7 +4,7 @@ Adds support for OmniAuth UfsAuth strategy for OpenProject.
 
 ## Usage
 
-Add this plugin by adding it to `Gemfile.plugins`, e.g.:
+Add this plugin by adding it to `/opt/openproject/Gemfile.custom`, e.g.:
 
 ```ruby
 group :opf_plugins do
@@ -12,9 +12,14 @@ group :opf_plugins do
 end
 ```
 
+Propagate the Gemfile to the package
+```ruby
+openproject config:set CUSTOM_PLUGIN_GEMFILE=/etc/openproject/Gemfile.custom
+```
+
 Put the following into a Rails initializer at `config/initializers/omniauth.rb`:
 ```ruby
-use OmniAuth::Builder do
+Rails.application.config.middleware.use OmniAuth::Builder do
   provider :ufs_auth, ENV['UFS_KEY'], ENV['UFS_SECRET']
 end
 ```
