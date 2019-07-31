@@ -15,7 +15,7 @@ end
 ```
 
 Propagate the Gemfile to the package
-```ruby
+```sh
 openproject config:set CUSTOM_PLUGIN_GEMFILE=/opt/openproject/Gemfile.custom
 openproject config:set UFS_KEY={client_id}
 openproject config:set UFS_SECRET={client_secret}
