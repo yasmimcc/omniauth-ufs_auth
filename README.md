@@ -14,7 +14,7 @@ end
 
 Propagate the Gemfile to the package
 ```ruby
-openproject config:set CUSTOM_PLUGIN_GEMFILE=/etc/openproject/Gemfile.custom
+openproject config:set CUSTOM_PLUGIN_GEMFILE=/opt/openproject/Gemfile.custom
 ```
 
 Put the following into a Rails initializer at `config/initializers/omniauth.rb`:
