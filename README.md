@@ -12,6 +12,14 @@ group :opf_plugins do
 end
 ```
 
+Also set:
+```ruby
+use OmniAuth::Builder do
+  provider :ufs_auth, ENV['UFS_KEY'], ENV['UFS_SECRET']
+end
+```
+
+
 Once you've done that install it via
 
 ```ruby
