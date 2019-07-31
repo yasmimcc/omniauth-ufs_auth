@@ -8,7 +8,7 @@ Add this plugin by adding it to `Gemfile.plugins`, e.g.:
 
 ```ruby
 group :opf_plugins do
-  gem 'omniauth-ufs',    :git => 'https://github.com/yasmimcc/omniauth-ufs.git'
+  gem 'openproject-ufs_auth',    :git => 'https://github.com/yasmimcc/openproject-ufs_auth.git'
 end
 ```
 
