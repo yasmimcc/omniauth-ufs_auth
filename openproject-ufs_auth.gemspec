@@ -16,6 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + %w(CHANGELOG.md README.md)
 
   s.add_dependency "rails", ">= 5.0.4"
-#  s.add_dependency "oauth2"
   s.add_dependency "omniauth-oauth2", ">= 1.5.0"
 end
