@@ -12,7 +12,7 @@ group :opf_plugins do
 end
 ```
 
-Also set:
+Put the following into a Rails initializer at `config/initializers/omniauth.rb`:
 ```ruby
 use OmniAuth::Builder do
   provider :ufs_auth, ENV['UFS_KEY'], ENV['UFS_SECRET']
