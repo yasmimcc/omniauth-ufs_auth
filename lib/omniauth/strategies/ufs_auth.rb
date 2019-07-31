@@ -1,17 +1,13 @@
-require 'securerandom'
-require 'omniauth/strategy'
+require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    ##
-    # The ufs authentication strategy simply shows a form where you provide the user info.
-    # Users are identified by their email address. I.e. when you want to login with a user you created
-    # before using the ufs auth strategy, you just have to provide the same email address in the form.
     class UfsAuth < OmniAuth::Strategies::OAuth2
-
-      option :fields, [:name, :email]
+      # strategy name
+      option :name, "ufs_auth"
+      
       option :client_options, {
-        :site => 'https://apisistemas.desenvolvimento.ufs.br',
+        :site => 'https://apisistemas.desenvolvimento.ufs.br/api/rest',
         :authorize_url => 'https://apisistemas.desenvolvimento.ufs.br/api/rest/authorization',
         :token_url => 'https://apisistemas.desenvolvimento.ufs.br/api/rest/token'
       }
@@ -19,11 +15,13 @@ module OmniAuth
       def request_phase
         super
       end
-
-      # required to identify the user in OpenProject
-      uid do
-        info[options.uid_field]
-      end
+      
+      # These are called after authentication has succeeded. If
+      # possible, you should try to set the UID without making
+      # additional calls (if the user id is returned with the token
+      # or as a URI parameter). This may not be possible with all
+      # providers.
+      uid{ raw_info['arquivo']['id'] }
 
       # required user info used in OpenProject
       # info do
@@ -37,11 +35,23 @@ module OmniAuth
       # end
       info do
         logger.info @raw_info.inspect
+        name = raw_info['pessoa']['nome']
         {
-          #'nickname' => raw_info['login'],
-          'email' => raw_info['email'],
-          'name' => raw_info['name']
+          email: raw_info['pessoa']['email'],
+          name: name,
+          first_name: name.split(/\s/).first,
+          last_name: name.split(/\s/).last
         }
+      end
+      
+      extra do
+        {
+          'raw_info' => raw_info
+        }
+      end
+
+      def raw_info
+        @raw_info ||= access_token.get('/usuario').parsed
       end
     end
   end
