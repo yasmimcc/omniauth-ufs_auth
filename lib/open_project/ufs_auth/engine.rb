@@ -16,7 +16,7 @@ module OpenProject::UfsAuth
 
     register_auth_providers do
       strategy :ufs_auth do
-        [{name: 'ufs_auth', display_name: 'Test Ufs'}]
+        [{name: 'ufs_auth', display_name: 'UFS', 'client_id': ENV['UFS_KEY'], 'client_secret': ENV['UFS_SECRET']}]
       end
     end
   end

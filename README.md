@@ -17,17 +17,10 @@ end
 Propagate the Gemfile to the package
 ```sh
 openproject config:set CUSTOM_PLUGIN_GEMFILE=/opt/openproject/Gemfile.custom
-openproject config:set UFS_KEY={client_id}
-openproject config:set UFS_SECRET={client_secret}
+openproject config:set UFS_KEY={client_id}        # your app api key
+openproject config:set UFS_SECRET={client_secret} # your app api secret
+openproject config:set FORCE_PARAMS='true'
 ```
-
-Put the following into a Rails initializer at `config/initializers/omniauth.rb`:
-```ruby
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :ufs_auth, ENV['UFS_KEY'], ENV['UFS_SECRET']
-end
-```
-
 
 Once you've done that install it via with user `su`
 
@@ -35,6 +28,6 @@ Once you've done that install it via with user `su`
 openproject configure
 ```
 
-If the plugin has been enabled you will have a new link that reads 'Ufs Auth' on the OpenProject login page and in the drop down menu.
+If the plugin has been enabled you will have a new link that reads 'UFS' on the OpenProject login page and in the drop down menu.
 
 Further details, check this old [video tutorial](https://www.youtube.com/watch?v=esCN9razZiE).
